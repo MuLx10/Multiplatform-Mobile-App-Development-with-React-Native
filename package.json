@@ -22,6 +22,7 @@
     "react-native-screens": "^2.4.0",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.3.7",
+    "react-navigation-drawer": "^2.4.11",
     "react-navigation-stack": "^2.3.11"
   },
   "devDependencies": {
