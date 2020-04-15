@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Platform } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+
 
 import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent';
@@ -24,23 +26,21 @@ const MenuNavigator = createStackNavigator({
     }
 );
 
+const MenuNavigatorApp = createAppContainer(MenuNavigator);
+
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dishes: DISHES,
-      selectedDish: null
+      dishes: DISHES
     };
-  }
-  onDishSelect(dishId) {
-      this.setState({selectedDish: dishId});
   }
   render() {
 
     return (
-      // <View style={{flex:1, paddingTop:0 }}>
-            <MenuNavigator />
-        // </View>
+        <View style={{flex:1, paddingTop:0 }}>
+            <MenuNavigatorApp />
+        </View>
     );
   }
 }
