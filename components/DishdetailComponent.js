@@ -87,12 +87,13 @@ class Dishdetail extends Component {
 
     render() {
         const dishId = this.props.navigation.getParam('dishId','');
+        // console.log(this.props);
         return(
             <ScrollView style={{flex: 1}}>
-                <RenderDish dish={this.props.dishes.dishes[+dishId]} favorite={this.props.favorites.favorites.some(el => el === dishId)} onPress={()=>this.markFavorite(dishId)} />
+                <RenderDish dish={this.props.dishes.dishes[+dishId]} favorite={this.props.favorites.some(el => el === dishId)} onPress={()=>this.markFavorite(dishId)} />
                 <RenderComments comments={this.props.comments.comments.filter((comment) => comment.dishId === dishId)} />
             </ScrollView>
         );
     }
 }
-export default connect(mapStateToProps)(Dishdetail);
+export default connect(mapStateToProps, mapDispatchToProps)(Dishdetail);
