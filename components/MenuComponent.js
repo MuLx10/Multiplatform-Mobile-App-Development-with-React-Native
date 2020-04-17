@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text } from 'react-native';
-import { ListItem } from 'react-native-elements';
-import { Tile } from 'react-native-elements';
+import { ListItem, Tile } from 'react-native-elements';
+import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
@@ -33,14 +33,15 @@ class Menu extends Component {
         const renderMenuItem = ({item, index}) => {
 
             return (
-              <Tile
-                  key={index}
-                  title={item.name}
-                  caption={item.description}
-                  featured
-                  onPress={() => navigate('Dishdetail', { dishId: item.id })}
-                  imageSrc={{ uri: baseUrl + item.image}}
-              />
+              <Animatable.View animation="fadeInRightBig" duration={2000}>
+                <Tile
+                    key={index}
+                    title={item.name}
+                    caption={item.description}
+                    featured
+                    onPress={() => navigate('Dishdetail', { dishId: item.id })}
+                    imageSrc={{ uri: baseUrl + item.image}} />
+                </Animatable.View>
             );
         };
 

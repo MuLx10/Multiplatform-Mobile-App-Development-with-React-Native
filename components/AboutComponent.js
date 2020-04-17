@@ -1,8 +1,9 @@
+
 import React, { Component } from 'react';
 import { ScrollView, SafeAreaView, Text, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
+import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
-
 import { Loading } from './LoadingComponent';
 import { LEADERS } from '../shared/leaders';
 import { baseUrl } from '../shared/baseUrl';
@@ -65,28 +66,30 @@ const History = () => {
         }
         else if (this.props.leaders.errMess) {
             return(
-                <ScrollView>
-                    <History />
-                    <Card
-                        title='Corporate Leadership'>
-                        <Text>{this.props.leaders.errMess}</Text>
-                    </Card>
-                </ScrollView>
+              <ScrollView>
+                  <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+                  <History />
+                  <Card title='Corporate Leadership'>
+                      <Text>{this.props.leaders.errMess}</Text>
+                  </Card>
+                  </Animatable.View>
+              </ScrollView>
             );
         }
         else {
             return(
-                <ScrollView>
-                    <History />
-                    <Card
-                        title='Corporate Leadership'>
-                    <FlatList
-                        data={this.props.leaders.leaders}
-                        renderItem={renderLeader}
-                        keyExtractor={item => item.id.toString()}
-                        />
-                    </Card>
-                </ScrollView>
+              <ScrollView>
+                  <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+                  <History />
+                  <Card title='Corporate Leadership'>
+                  <FlatList
+                      data={this.props.leaders.leaders}
+                      renderItem={renderLeader}
+                      keyExtractor={item => item.id.toString()}
+                      />
+                  </Card>
+                  </Animatable.View>
+              </ScrollView>
             );
         }
     }

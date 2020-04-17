@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, View, Text, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
 import Swipeout from 'react-native-swipeout';
 import { Loading } from './LoadingComponent';
@@ -56,6 +57,7 @@ class Favorites extends Component {
               ];
           return (
             <Swipeout right={rightButton} autoClose={true}>
+              <Animatable.View animation="fadeInRightBig" duration={2000}>
                 <ListItem
                     key={index}
                     title={item.name}
@@ -64,6 +66,7 @@ class Favorites extends Component {
                     onPress={() => navigate('Dishdetail', { dishId: item.id })}
                     leftAvatar={{ source: {uri: baseUrl + item.image}}}
                     />
+                </Animatable.View>
             </Swipeout>
             );
         };
@@ -91,6 +94,5 @@ class Favorites extends Component {
         }
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
