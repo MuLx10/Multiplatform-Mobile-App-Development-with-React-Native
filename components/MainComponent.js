@@ -14,6 +14,7 @@ import Home from './HomeComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
+import Favorites from './FavoriteComponent';
 import { DISHES } from '../shared/dishes';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
@@ -87,11 +88,7 @@ const ContactNavigator = createStackNavigator({
     headerTitleStyle: {
         color: "#fff"
     },
-    headerTintColor: "#fff",
-    headerLeft: () => <Icon name="menu"
-                            size={24} color='white'
-                            onPress={ () => navigation.toggleDrawer() } />
-
+    headerTintColor: "#fff"
   })
 });
 
@@ -126,11 +123,26 @@ const ReservationNavigator = createStackNavigator({
         color: "#fff"
     },
     headerTintColor: "#fff",
-    headerLeft: () => <Icon name="menu" size={24}
-        iconStyle={{ color: 'white' }}
-        onPress={ () => navigation.navigate('DrawerToggle') } />
   })
 });
+
+const FavoritesNavigator = createStackNavigator({
+    Favorites: { screen: Favorites,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft: () => (<Icon name="menu" size={30} color='black' onPress={() => navigation.toggleDrawer()} iconStyle={{marginLeft:15}}/>)
+    })}
+  }, {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+          backgroundColor: "#512DA8"
+      },
+      headerTitleStyle: {
+          color: "#fff"
+      },
+      headerTintColor: "#fff"
+    })
+})
+
 
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
@@ -225,7 +237,22 @@ const MainNavigator = createDrawerNavigator({
            />
          ),
        }
-     }
+     },
+    Favorites:
+      { screen: FavoritesNavigator,
+        navigationOptions: {
+          title: 'My Favorites',
+          drawerLabel: 'My Favorites',
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name='heart'
+              type='font-awesome'
+              size={24}
+              iconStyle={{ color: tintColor }}
+            />
+          ),
+        }
+      }
 }, {
   drawerBackgroundColor: '#fff',//'#D1C4E9',
   contentComponent: CustomDrawerContentComponent
