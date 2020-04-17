@@ -24,12 +24,13 @@ const mapDispatchToProps = dispatch => ({
 
 function RenderDish(props) {
     const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
-        if ( dx < -200 )
-            return true;
-        else
-            return false;
+        if ( dx < -200 ) return true;
+        else return false;
     }
-    handleViewRef = ref => this.view = ref;
+    const recognizeComment = ({ moveX, moveY, dx, dy }) => {
+        if ( dx > 200 ) return true;
+        else return false;
+    }
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: (e, gestureState) => {
             return true;
@@ -48,13 +49,16 @@ function RenderDish(props) {
                     ],
                     { cancelable: false }
                 );
+            if (recognizeComment(gestureState))
+                props.onComment();
 
             return true;
         }
     })
     const dish = props.dish;
-        if (dish != null) {
-            return(
+    handleViewRef = ref => this.view = ref;
+    if (dish != null) {
+        return(
               <Animatable.View animation="fadeInDown" duration={2000} delay={1000} ref={this.handleViewRef} {...panResponder.panHandlers}>
                 <Card featuredTitle={dish.name} image={{uri: baseUrl + dish.image}}>
                     <Text style={{margin: 10}}>
