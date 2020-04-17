@@ -24,7 +24,7 @@ class Favorites extends Component {
     static navigationOptions = {
         title: 'My Favorites'
     };
-
+    // handleViewRef = (ref) => this.view = ref;
     render() {
 
         const { navigate } = this.props.navigation;
@@ -35,6 +35,7 @@ class Favorites extends Component {
                       text: 'Delete',
                       type: 'delete',
                       onPress: () => {
+                          // this.view.bounceIn(1000);
                           Alert.alert(
                               'Delete Favorite?',
                               'Are you sure you wish to delete the favorite dish ' + item.name + '?',
