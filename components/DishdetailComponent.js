@@ -104,7 +104,6 @@ class Dishdetail extends Component {
                              this.state.comment);
     }
 
-
     render() {
         const dishId = this.props.navigation.getParam('dishId','');
         // console.log(this.props);

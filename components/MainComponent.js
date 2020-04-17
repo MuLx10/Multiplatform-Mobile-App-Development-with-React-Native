@@ -35,7 +35,10 @@ const mapDispatchToProps = dispatch => ({
 
 const HomeNavigator = createStackNavigator(
   {
-    Home: { screen: Home },
+    Home: { screen: Home ,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft: () => (<Icon name="menu" size={30} color='black' onPress={() => navigation.toggleDrawer()} iconStyle={{marginLeft:15}}/>)
+    })}
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -46,7 +49,6 @@ const HomeNavigator = createStackNavigator(
         color: '#fff'
       },
       headerTintColor: '#fff',
-      headerLeft: () => <Icon name="menu" size={24} color="white" onPress={() => navigation.toggleDrawer()}/>
     })
   }
 );
@@ -54,7 +56,7 @@ const HomeNavigator = createStackNavigator(
 const MenuNavigator = createStackNavigator({
         Menu: { screen: Menu,
           navigationOptions: ({ navigation }) => ({
-            headerLeft: () => <Icon name="menu" size={24} color='white' onPress={ () => navigation.toggleDrawer() } />
+            headerLeft: () => (<Icon name="menu" size={30} color='black' onPress={() => navigation.toggleDrawer()} iconStyle={{marginLeft:15}}/>)
         })},
         Dishdetail: { screen: Dishdetail }
     },
@@ -73,7 +75,10 @@ const MenuNavigator = createStackNavigator({
 );
 
 const ContactNavigator = createStackNavigator({
-  Contact: { screen: Contact }
+  Contact: { screen: Contact,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: () => (<Icon name="menu" size={30} color='black' onPress={() => navigation.toggleDrawer()} iconStyle={{marginLeft:15}}/>)
+  })}
 }, {
   navigationOptions: ({ navigation }) => ({
     headerStyle: {
@@ -91,7 +96,10 @@ const ContactNavigator = createStackNavigator({
 });
 
 const AboutNavigator = createStackNavigator({
-  About: { screen: About }
+  About: { screen: About,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: () => (<Icon name="menu" size={30} color='black' onPress={() => navigation.toggleDrawer()} iconStyle={{marginLeft:15}}/>)
+  })}
 }, {
   navigationOptions: ({ navigation }) => ({
     headerStyle: {
@@ -105,7 +113,10 @@ const AboutNavigator = createStackNavigator({
 });
 
 const ReservationNavigator = createStackNavigator({
-  Reservation: { screen: Reservation }
+  Reservation: { screen: Reservation,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: () => (<Icon name="menu" size={30} color='black' onPress={() => navigation.toggleDrawer()} iconStyle={{marginLeft:15}}/>)
+  })}
 }, {
   navigationOptions: ({ navigation }) => ({
     headerStyle: {
