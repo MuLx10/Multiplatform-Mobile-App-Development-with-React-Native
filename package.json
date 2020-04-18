@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.9",
+    "@react-native-community/netinfo": "^5.7.1",
     "expo": "^37.0.7",
+    "expo-calendar": "^8.1.0",
+    "expo-image-manipulator": "^8.1.0",
     "expo-image-picker": "^8.1.0",
     "expo-mail-composer": "^8.1.0",
     "expo-notifications": "^0.1.1",

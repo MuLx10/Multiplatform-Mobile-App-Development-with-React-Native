@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { View, Text, ScrollView, StyleSheet, Picker, Switch, Button, Alert, Platform } from 'react-native'
-import DatePicker from 'react-native-datepicker'
-import * as Animatable from 'react-native-animatable'
-import * as Permissions from 'expo-permissions'
-import { Notifications } from 'expo'
-import * as Calendar from 'expo-calendar'
+import React, { Component } from 'react';
+import { View, Text, ScrollView, StyleSheet, Picker, Switch, Button, Alert, Platform } from 'react-native';
+import DatePicker from 'react-native-datepicker';
+import * as Animatable from 'react-native-animatable';
+import * as Permissions from 'expo-permissions';
+import { Notifications } from 'expo';
+import * as Calendar from 'expo-calendar';
 
 export default class Reservation extends Component {
     constructor(props) {

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Platform } from 'react-native';
 import { Image, StyleSheet } from 'react-native';
 import { Text, ScrollView, SafeAreaView } from 'react-native';
-import { NetInfo, ToastAndroid } from 'react-native';
+import { ToastAndroid } from 'react-native';
+import  NetInfo  from '@react-native-community/netinfo';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
@@ -37,28 +38,11 @@ const mapDispatchToProps = dispatch => ({
   fetchLeaders: () => dispatch(fetchLeaders()),
 });
 
-// const LoginNavigator = createStackNavigator({
-//      Login: { screen: Login,
-//        navigationOptions: ({ navigation }) => ({
-//          headerLeft: () => (<Icon name="menu" size={30} color='black' onPress={() => navigation.toggleDrawer()} iconStyle={{marginLeft:15}}/>)
-//      })}
-//    }, {
-//    navigationOptions: ({ navigation }) => ({
-//      headerStyle: {
-//          backgroundColor: "#512DA8"
-//      },
-//      headerTitleStyle: {
-//          color: "#fff"
-//      },
-//      headerTintColor: "#fff",
-//      headerLeft: <Icon name="menu" size={24}
-//        iconStyle={{ color: 'white' }}
-//        onPress={ () => navigation.toggleDrawer() } />
-//    })
-//  });
-
- const LoginNavigator = createStackNavigator({
-     Login: Login
+const LoginNavigator = createStackNavigator({
+     Login: { screen: Login,
+       navigationOptions: ({ navigation }) => ({
+         headerLeft: () => (<Icon name="menu" size={30} color='black' onPress={() => navigation.toggleDrawer()} iconStyle={{marginLeft:15}}/>)
+     })}
    }, {
    navigationOptions: ({ navigation }) => ({
      headerStyle: {
@@ -74,6 +58,24 @@ const mapDispatchToProps = dispatch => ({
        onPress={ () => navigation.toggleDrawer() } />
    })
  });
+
+ // const LoginNavigator = createStackNavigator({
+ //     Login: Login
+ //   }, {
+ //   navigationOptions: ({ navigation }) => ({
+ //     headerStyle: {
+ //         backgroundColor: "#512DA8"
+ //     },
+ //     headerTitleStyle: {
+ //         color: "#fff"
+ //     },
+ //     title: 'Login',
+ //     headerTintColor: "#fff",
+ //     headerLeft: <Icon name="menu" size={24}
+ //       iconStyle={{ color: 'white' }}
+ //       onPress={ () => navigation.toggleDrawer() } />
+ //   })
+ // });
 
 const HomeNavigator = createStackNavigator(
   {
@@ -329,17 +331,17 @@ class Main extends Component {
      this.props.fetchComments();
      this.props.fetchPromos();
      this.props.fetchLeaders();
-     NetInfo.getConnectionInfo()
-        .then((connectionInfo) => {
-            ToastAndroid.show('Initial Network Connectivity Type: '
-                + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType,
-                ToastAndroid.LONG)
-        });
+     // NetInfo.getConnectionInfo()
+     //    .then((connectionInfo) => {
+     //        ToastAndroid.show('Initial Network Connectivity Type: '
+     //            + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType,
+     //            ToastAndroid.LONG)
+     //    });
 
-    NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
+    NetInfo.addEventListener(this.handleConnectivityChange);
   }
   componentWillUnmount() {
-    NetInfo.removeEventListener('connectionChange', this.handleConnectivityChange);
+    // NetInfo.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
   handleConnectivityChange = (connectionInfo) => {
     switch (connectionInfo.type) {
@@ -347,15 +349,16 @@ class Main extends Component {
         ToastAndroid.show('You are now offline!', ToastAndroid.LONG);
         break;
       case 'wifi':
-        ToastAndroid.show('You are now connected to WiFi!', ToastAndroid.LONG);
+        ToastAndroid.show('You are now connected to WiFi!', 2*ToastAndroid.LONG);
         break;
       case 'cellular':
-        ToastAndroid.show('You are now connected to Cellular!', ToastAndroid.LONG);
+        ToastAndroid.show('You are now connected to Cellular!', 2*ToastAndroid.LONG);
         break;
       case 'unknown':
-        ToastAndroid.show('You now have unknown connection!', ToastAndroid.LONG);
+        ToastAndroid.show('You now have unknown connection!', 2*ToastAndroid.LONG);
         break;
       default:
+      ToastAndroid.show('You now have unknown connection!', 2*ToastAndroid.LONG);
         break;
     }
   }

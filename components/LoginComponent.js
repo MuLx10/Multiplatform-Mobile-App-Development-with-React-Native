@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { View, StyleSheet, Text, ScrollView, Image } from 'react-native'
-import { Input, Icon, CheckBox, Button } from 'react-native-elements'
-import * as SecureStore from 'expo-secure-store'
-import * as Permissions from 'expo-permissions'
-import * as ImagePicker from 'expo-image-picker'
-import { createBottomTabNavigator } from 'react-navigation-tabs'
-import { Asset } from "expo-asset"
-import * as ImageManipulator from "expo-image-manipulator"
-import { baseUrl } from '../shared/baseUrl'
+import React, { Component } from 'react';
+import { View, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import { Input, Icon, CheckBox, Button } from 'react-native-elements';
+import * as SecureStore from 'expo-secure-store';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { Asset } from "expo-asset";
+import * as ImageManipulator from "expo-image-manipulator";
+import { baseUrl } from '../shared/baseUrl';
 
 
 class LoginTab extends Component {
@@ -205,14 +205,18 @@ class RegisterTab extends Component {
                             loadingIndicatorSource = { require('./images/logo.png')}
                             style = { styles.image }
                         />
+                        <View style={styles.btnRow}>
                         <Button
                             title = 'Camera'
                             onPress={ this.getImageFromCamera }
                         />
+                        </View>
+                        <View style={styles.btnRow}>
                         <Button
                             title = 'Gallery'
                             onPress={ this.getImageFromGallery }
                         />
+                        </View>
                     </View>
                     <Input
                         placeholder = "Username"
@@ -307,5 +311,10 @@ const styles = StyleSheet.create({
     },
     formButton: {
         margin: 60
+    },
+    btnRow: {
+      alignItems: 'center',
+      flexDirection: 'row',
+      margin: 20
     }
 })
