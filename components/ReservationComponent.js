@@ -112,7 +112,7 @@ class Reservation extends Component{
             style={{flex:2, marginRight: 20}}
             date={this.state.date}
             format=''
-            mode='datetime'
+            mode='date'
             placeholder='select date and time'
             minDate='2018-01-01'
             confirmBtnText='Confirm'
