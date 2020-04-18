@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList, Modal, Button } from 'react-native';
-import { StyleSheet, Dimensions, PanResponder, Alert } from 'react-native';
+import { StyleSheet, Dimensions, PanResponder, Alert, Share } from 'react-native';
 import { Card, Icon, Rating, Input } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
@@ -23,6 +23,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 function RenderDish(props) {
+    const dish = props.dish;
+
     const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
         if ( dx < -200 ) return true;
         else return false;
@@ -51,11 +53,20 @@ function RenderDish(props) {
                 );
             if (recognizeComment(gestureState))
                 props.onComment();
-
             return true;
         }
-    })
-    const dish = props.dish;
+    });
+
+    const shareDish = (title, message, url) => {
+        Share.share({
+            title: title,
+            message: title + ': ' + message + ' ' + url,
+            url: url
+        },{
+            dialogTitle: 'Share ' + title
+        })
+    }
+
     handleViewRef = ref => this.view = ref;
     if (dish != null) {
         return(
@@ -67,6 +78,7 @@ function RenderDish(props) {
                     <View style={styles.formRow}>
                       <Icon raised reverse name={props.favorite?'heart':'heart-o'} type='font-awesome' color='#f50' onPress={() => props.favorite ? console.log('Already favorite') : props.onPress()}/>
                       <Icon raised reverse name={'pencil'} type='font-awesome' color='#512DA8' onPress={() => props.onComment()}/>
+                      <Icon raised reverse name={'share'} type='font-awesome' color='#51D2A8' onPress={() => shareDish(dish.name, dish.description, baseUrl+dish.image)}/>
                     </View>
                 </Card>
               </Animatable.View>
@@ -207,11 +219,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     flex: 1,
-    marginLeft: Dimensions.get('window').width/4
+    marginLeft: 60
   },
   modalText: {
     fontSize: 18,
-    margin: 10
+    margin: 30
   },
   modal: {
     justifyContent: 'center',
