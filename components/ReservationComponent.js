@@ -4,10 +4,9 @@ import { Text, View, ScrollView,
   Button, Modal, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import * as Animatable from 'react-native-animatable';
-// import * as Permissions from 'expo-permissions';
-// import * as Notifications from 'expo-notifications';
-import { Permissions, Notifications } from 'expo';
-
+import * as Permissions from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
+// import { Permissions, Notifications } from 'expo';
 
 class Reservation extends Component{
   constructor(props){
@@ -61,6 +60,7 @@ class Reservation extends Component{
               color: '#512DA8'
           }
       });
+      console.log('presentLocalNotification');
   }
 
   handleReservation = () => {
@@ -112,7 +112,7 @@ class Reservation extends Component{
             style={{flex:2, marginRight: 20}}
             date={this.state.date}
             format=''
-            mode='date'
+            mode='datetime'
             placeholder='select date and time'
             minDate='2018-01-01'
             confirmBtnText='Confirm'

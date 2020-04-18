@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 import { Card, Icon, Input, CheckBox } from 'react-native-elements';
-// import * as SecureStore from 'expo-secure-store';
-import { SecureStore } from 'expo';
+import * as SecureStore from 'expo-secure-store';
+// import { SecureStore } from 'expo';
 
 class Login extends Component {
 
@@ -40,7 +40,6 @@ class Login extends Component {
         else
             SecureStore.deleteItemAsync('userinfo')
                 .catch((error) => console.log('Could not delete user info', error));
-
     }
 
     render() {
